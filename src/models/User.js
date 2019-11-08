@@ -9,7 +9,8 @@ class User extends Model{
       active: DataTypes.BOOLEAN,
 
     },{
-      sequelize
+      sequelize,
+      tableName: 'users'
     })
   }
 }

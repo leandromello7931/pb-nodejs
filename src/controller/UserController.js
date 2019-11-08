@@ -6,9 +6,14 @@ module.exports = {
     const {
       name,
       login,
-      password = bcrypt.hashSync(req.password, 10),
+      password,
     } = req.body;
-      const user = await User.create({name, login, password}).catch((err) => {console.log(err)});
+
+    const hashPass = bcrypt.hashSync(password);
+      const user = await User.create({name, login, hashPass}).
+      catch((err) => {
+        console.log(err);
+      });
     
     return res.json(user);
   }

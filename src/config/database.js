@@ -7,6 +7,7 @@ module.exports = {
   database: 'pb', 
   define: {
     timestamps: true,
+    underscored: false,
 
   },
 };
