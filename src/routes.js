@@ -1,5 +1,7 @@
 const express = require('express');
 const UserController = require('./controller/UserController');
+const CategoryController = require('./controller/CategoryController');
+
 const routes = express.Router();
 
 routes.get('/', (req, res) => {
@@ -7,5 +9,6 @@ routes.get('/', (req, res) => {
 });
 
 routes.post('/users', UserController.store);
+routes.post('/categories', CategoryController.store );
 
-module.exports = routes;
+module.exports = routes; 
