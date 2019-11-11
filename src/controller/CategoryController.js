@@ -13,7 +13,7 @@ module.exports = {
     
     try{
       const category = await Category.create({ name, active });
-      //console.log(category);
+      console.log(category);
       // if(!category){
       //   return res.status(409).send({error: "An error has ocurred, please check the message and try again"});
       // }
