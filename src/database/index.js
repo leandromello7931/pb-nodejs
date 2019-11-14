@@ -12,5 +12,6 @@ User.init(connection);
 Category.init(connection);
 Items.init(connection);
 TableBar.init(connection);
+Order.init(connection);
 
 module.exports = connection;
