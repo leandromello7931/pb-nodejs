@@ -10,6 +10,10 @@ class Order extends Model{
       tableName: 'orders'
     })
   }
+
+  static associate(models){
+    this.belongsTo(models.Table, { foreignKey: 'table_id'});
+  }
 }
 
 module.exports = Order;

@@ -1,6 +1,6 @@
 const { Model, DataTypes } = require('sequelize');
 
-class TableBar extends Model{
+class Table extends Model{
   static init(sequelize){
     super.init({
       identification: DataTypes.STRING,
@@ -9,9 +9,14 @@ class TableBar extends Model{
       active: DataTypes.BOOLEAN
     }, {
       sequelize,
-      tableName: 'tablesBar'
+      tableName: 'tables'
     })
   }
+
+  static associate(models){
+    this.hasMany(models.Order, { foreignKey: 'table_id' });
+  }
+
 }
 
-module.exports = TableBar;
+module.exports = Table;

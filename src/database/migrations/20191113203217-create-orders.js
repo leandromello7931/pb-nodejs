@@ -12,7 +12,7 @@ module.exports = {
       table_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        references: { model: 'tablesBar', key: 'id'},
+        references: { model: 'tables', key: 'id'},
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
       },
