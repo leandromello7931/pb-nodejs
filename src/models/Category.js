@@ -11,6 +11,10 @@ class Category extends Model{
       tableName: 'categories'
     })
   }
+
+  static associate(models){
+    this.belongsToMany(models.Items,)
+  }
 }
 
 module.exports = Category;
