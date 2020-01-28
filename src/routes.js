@@ -17,7 +17,8 @@ routes.get('/', (req, res) => {
   return res.json({hello: "World"});
 });
 
-routes.post('/users', UserController.store);
+routes.post('/users/store', UserController.store);
+routes.post('/users/index', UserController.index);
 routes.post('/categories', CategoryController.store );
 routes.post('/items', upload.single('image'), ItemController.store);
 routes.post('/tables', TableController.store);

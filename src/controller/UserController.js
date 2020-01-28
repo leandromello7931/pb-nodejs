@@ -3,7 +3,10 @@ const bcrypt = require('bcrypt');
 
 module.exports = {
   async index(req, res, next){
-
+    console.log(req);
+    const { login, password} = req.body;
+    const user = await User.findOne({where: {login : login}})
+    return res.json(user);
   },
 
   async store(req, res, next){
