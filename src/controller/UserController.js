@@ -16,8 +16,8 @@ module.exports = {
       });
       return res.json({auth: true, token: token});
     }
-    res.status(401);
-    return next(err);
+    
+    return res.status(401).send({error: 'User not authorized'});
   },
 
   async store(req, res, next){
