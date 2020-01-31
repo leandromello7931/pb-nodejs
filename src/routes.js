@@ -1,7 +1,7 @@
 const express = require('express');
 const multer = require('multer');
-const uploadConfig = require('./config/upload')
-
+const uploadConfig = require('./config/upload');
+const auth = require('./services/auth');
 
 const UserController = require('./controller/UserController');
 const CategoryController = require('./controller/CategoryController');
@@ -17,9 +17,9 @@ routes.get('/', (req, res) => {
   return res.json({hello: "World"});
 });
 
-routes.post('/users/store', UserController.store);
+routes.post('/users/store', auth.verifyJWT, (req, res, next) => {UserController.store(req, res, next)});
 routes.post('/users/index', UserController.index);
-routes.post('/categories', CategoryController.store );
+routes.post('/categories', auth.verifyJWT, (req, res, next) => {CategoryController.store(req, res, next)});
 routes.post('/items', upload.single('image'), ItemController.store);
 routes.post('/tables', TableController.store);
 routes.get('/tables', TableController.index);

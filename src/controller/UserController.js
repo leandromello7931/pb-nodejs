@@ -1,11 +1,20 @@
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
-
+const jwt = require('jsonwebtoken');
 module.exports = {
+
   async index(req, res, next){
     const { login, password} = req.body;
     const user = await User.findOne({where: {login : login}})
-    return res.json(user);
+    const authorized = await bcrypt.compare(password, user.password);
+    const _id = user.id;
+    if(authorized){
+      const token = jwt.sign({_id}, process.env.SECRET, {
+        expiresIn: 500
+      });
+      return res.status(200).send({auth: true, token: token});
+    }
+    return res.status(401);
   },
 
   async store(req, res, next){
@@ -15,6 +24,8 @@ module.exports = {
       password,
     } = req.body;
 
+    console.log(req);
+    
     const saltRounds = 10;
 
     try{
