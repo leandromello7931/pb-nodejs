@@ -1,8 +1,8 @@
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-module.exports = {
 
+module.exports = {
   async index(req, res){
     const { login, password} = req.body;
     const user = await User.findOne({where: {login : login}})
@@ -12,7 +12,7 @@ module.exports = {
       const token = jwt.sign({_id}, process.env.SECRET, {
         expiresIn: 500
       });
-      return res.status(200).send({auth: true, token: token});
+      return res.json({auth: true, token: token});
     }
     return res.status(401);
   },
