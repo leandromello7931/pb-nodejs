@@ -23,7 +23,7 @@ app.use(express.json());
 app.use(cors(corsOptions));
 app.options('*', cors());
 
-app.use('/public',function(req, res, next) {
+app.use('*',function(req, res, next) {
   res.setHeader("Access-Control-Allow-Origin", "*");
   // Request headers you wish to allow
   res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
