@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 module.exports = {
 
-  async index(req, res, next){
+  async index(req, res){
     const { login, password} = req.body;
     const user = await User.findOne({where: {login : login}})
     const authorized = await bcrypt.compare(password, user.password);

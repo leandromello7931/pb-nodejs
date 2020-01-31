@@ -16,7 +16,7 @@ const upload = multer(uploadConfig);
 
 
 routes.post('/users/store', auth.verifyJWT, (req, res, next) => {UserController.store(req, res, next)});
-routes.post('/users/index', UserController.index(req, res, next));
+routes.post('/users/index', UserController.index);
 routes.post('/categories', auth.verifyJWT, (req, res, next) => {CategoryController.store(req, res, next)});
 routes.post('/items', upload.single('image'), ItemController.store);
 routes.post('/tables', TableController.store);
