@@ -1,7 +1,7 @@
 const express = require('express');
 const routes = require('./routes');
 const app = express();
-const cors = require('cors');
+//const cors = require('cors');
 const autoReap = require('multer-autoreap');
 const dotenv = require('dotenv-safe');
 const PORT = process.env.PORT || 3333;
@@ -20,16 +20,16 @@ const corsOptions = {
 
 dotenv.config();
 
-app.use((req, res) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Expose-Headers: Content-Length, X-JSON");
-  res.header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
-  next();
-});
+// app.use((req, res) => {
+//   res.header("Access-Control-Allow-Origin", "*");
+//   res.header("Access-Control-Expose-Headers: Content-Length, X-JSON");
+//   res.header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
+//   res.header("Access-Control-Allow-Headers", "X-Requested-With");
+//   next();
+// });
 
 app.use(express.json());
-app.use(cors(corsOptions));
+//app.use(cors(corsOptions));
 app.use(autoReap);
 
 app.use(routes);
