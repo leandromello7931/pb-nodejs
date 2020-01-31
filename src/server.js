@@ -23,8 +23,8 @@ app.use(express.json());
 app.use(cors(corsOptions));
 app.options('*', cors());
 
-app.use('*',function(req, res, next) {
-  res.setHeader("Access-Control-Allow-Origin", "*");
+app.use(function(req, res, next) {
+  res.setHeader("Access-Control-Allow-Origin", "https://backend-pb.herokuapp.com");
   // Request headers you wish to allow
   res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   // Set to true if you need the website to include cookies in the requests sent
