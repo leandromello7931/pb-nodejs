@@ -23,15 +23,16 @@ app.use(express.json());
 app.use(cors(corsOptions));
 app.options('*', cors());
 
-app.use((req, res, next) => {
-  req.header("Access-Control-Allow-Origin", "*");
-  req.header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
-  req.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+app.use('/public',function(req, res, next) {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  // Request headers you wish to allow
+  res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  // Set to true if you need the website to include cookies in the requests sent
+  res.setHeader('Access-Control-Allow-Credentials', true);
+  // Pass to next layer of middleware
   next();
 });
+
 
 
 app.use(autoReap);
