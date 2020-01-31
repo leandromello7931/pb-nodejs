@@ -14,9 +14,7 @@ const routes = express.Router();
 
 const upload = multer(uploadConfig);
 
-routes.post('/users/index', cors(), UserController.index);
-
-
+routes.post('/users/index', (req, res, next) => UserController.index(req, res, next));
 routes.post('/users/store', auth.verifyJWT, (req, res, next) => {UserController.store(req, res, next)});
 // routes.post('/categories', auth.verifyJWT, (req, res, next) => {CategoryController.store(req, res, next)});
 // routes.post('/items', upload.single('image'), ItemController.store);
