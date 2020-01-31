@@ -14,7 +14,9 @@ const routes = express.Router();
 const upload = multer(uploadConfig);
 
 routes.get('/', (req, res) => {
-  return res.json({hello: "World"});
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  next();
 });
 
 routes.post('/users/store', auth.verifyJWT, (req, res, next) => {UserController.store(req, res, next)});
