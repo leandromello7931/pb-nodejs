@@ -5,8 +5,6 @@ const cors = require('cors');
 const autoReap = require('multer-autoreap');
 const dotenv = require('dotenv-safe');
 const PORT = process.env.PORT || 3333;
-const UserController = require('./controller/UserController');
-
 require('./database');
 
 const app = express();
@@ -27,6 +25,6 @@ app.options('*', function(req, res){
 dotenv.config();
 
 app.use(autoReap);
-app.post('/users/index', UserController.index);
+
 app.use(routes);
 app.listen(PORT);

@@ -3,6 +3,7 @@ const multer = require('multer');
 const uploadConfig = require('./config/upload');
 const auth = require('./services/auth');
 
+
 const UserController = require('./controller/UserController');
 const CategoryController = require('./controller/CategoryController');
 const ItemController = require('./controller/ItemController');
@@ -16,7 +17,9 @@ const upload = multer(uploadConfig);
 
 
 routes.post('/users/store', auth.verifyJWT, (req, res, next) => {UserController.store(req, res, next)});
-// routes.post('/users/index', UserController.index);
+routes.post('/users/index', function(req, res){
+  res.status(200).send({ola: 'mundo'});
+});
 routes.post('/categories', auth.verifyJWT, (req, res, next) => {CategoryController.store(req, res, next)});
 routes.post('/items', upload.single('image'), ItemController.store);
 routes.post('/tables', TableController.store);
