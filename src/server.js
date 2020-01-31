@@ -19,6 +19,8 @@ const corsOptions = {
 }
 
 dotenv.config();
+app.use(express.json());
+app.use(cors(corsOptions));
 
 app.use((req, res) => {
   req.header("Access-Control-Allow-Origin", "*");
@@ -30,8 +32,7 @@ app.use((req, res) => {
   next();
 });
 
-app.use(express.json());
-app.use(cors(corsOptions));
+
 app.use(autoReap);
 
 app.use(routes);
