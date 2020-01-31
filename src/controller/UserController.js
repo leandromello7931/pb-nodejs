@@ -9,14 +9,15 @@ module.exports = {
     const user = await User.findOne({where: {login : login}})
     const authorized = await bcrypt.compare(password, user.password);
     const _id = user.id;
-    
+    console.log('sem or');
     if(authorized){ //password match 
       const token = jwt.sign({_id}, process.env.SECRET, { //generate token with user.id
         expiresIn: 500
       });
       return res.json({auth: true, token: token});
     }
-    return res.status(401);
+    res.status(401);
+    return next(err);
   },
 
   async store(req, res, next){
