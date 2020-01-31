@@ -13,11 +13,7 @@ const routes = express.Router();
 
 const upload = multer(uploadConfig);
 
-routes.get('/', (req, res) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
-  next();
-});
+
 
 routes.post('/users/store', auth.verifyJWT, (req, res, next) => {UserController.store(req, res, next)});
 routes.post('/users/index', UserController.index);
