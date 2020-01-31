@@ -7,7 +7,7 @@ const dotenv = require('dotenv-safe');
 const PORT = process.env.PORT || 3333;
 require('./database');
 
-const whitelist = ['http:/localhost:3333', 'https://backend-pb.herokuapp.com/'];
+const whitelist = ['http:/localhost:3333', 'https://backend-pb.herokuapp.com/', 'http://localhost:3000'];
 const corsOptions = {
   origin: function(origin, callback){
     if (whitelist.indexOf(origin) !== -1){
