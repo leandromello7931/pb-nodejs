@@ -21,6 +21,7 @@ const corsOptions = {
 dotenv.config();
 app.use(express.json());
 app.use(cors(corsOptions));
+app.options('*', cors());
 
 app.use((req, res, next) => {
   req.header("Access-Control-Allow-Origin", "*");
