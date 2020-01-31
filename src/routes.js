@@ -2,7 +2,7 @@ const express = require('express');
 const multer = require('multer');
 const uploadConfig = require('./config/upload');
 const auth = require('./services/auth');
-
+const cors = require('cors');
 
 const UserController = require('./controller/UserController');
 const CategoryController = require('./controller/CategoryController');
@@ -14,7 +14,7 @@ const routes = express.Router();
 
 const upload = multer(uploadConfig);
 
-routes.post('/users/index', UserController.index);
+routes.post('/users/index', cors(), UserController.index);
 
 
 // routes.post('/users/store', auth.verifyJWT, (req, res, next) => {UserController.store(req, res, next)});
