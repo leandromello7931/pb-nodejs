@@ -3,13 +3,15 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 module.exports = {
-  async index(req, res){
+
+  async login(req, res, next){
     const { login, password} = req.body;
     const user = await User.findOne({where: {login : login}})
     const authorized = await bcrypt.compare(password, user.password);
     const _id = user.id;
-    if(authorized){
-      const token = jwt.sign({_id}, process.env.SECRET, {
+    
+    if(authorized){ //password match 
+      const token = jwt.sign({_id}, process.env.SECRET, { //generate token with user.id
         expiresIn: 500
       });
       return res.json({auth: true, token: token});
