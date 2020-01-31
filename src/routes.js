@@ -2,7 +2,6 @@ const express = require('express');
 const multer = require('multer');
 const uploadConfig = require('./config/upload');
 const auth = require('./services/auth');
-const cors = require('cors');
 
 const UserController = require('./controller/UserController');
 const CategoryController = require('./controller/CategoryController');

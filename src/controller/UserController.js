@@ -8,9 +8,6 @@ module.exports = {
     const user = await User.findOne({where: {login : login}})
     const authorized = await bcrypt.compare(password, user.password);
     const _id = user.id;
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
-    res.header("Access-Control-Allow-Headers", "X-Requested-With");
     if(authorized){
       const token = jwt.sign({_id}, process.env.SECRET, {
         expiresIn: 500

@@ -11,6 +11,11 @@ const app = express();
 dotenv.config();
 app.use(express.json());
 app.use(cors());
+
+app.use(cors({
+  exposeHeaders: ['x-access-token'],
+}));
+
 dotenv.config();
 
 app.use(autoReap);
