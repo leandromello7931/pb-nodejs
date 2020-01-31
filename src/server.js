@@ -22,7 +22,7 @@ dotenv.config();
 app.use(express.json());
 app.use(cors(corsOptions));
 
-app.use((req, res) => {
+app.use((req, res, next) => {
   req.header("Access-Control-Allow-Origin", "*");
   req.header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
   req.header("Access-Control-Allow-Headers", "X-Requested-With");
