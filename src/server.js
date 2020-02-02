@@ -12,14 +12,16 @@ dotenv.config();
 app.use(express.json());
 app.use(cors());
 
-app.use(cors({
-  exposeHeaders: ['x-access-token'],
-}));
+app.use(cors());
 
-app.options('*', function(req, res){
+app.use(( req, res, next ) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader('Access-Control-Allow-Methods', '*');
-  res.setHeader("Access-Control-Allow-Headers", "*");
+  res.setHeader('Access-Control-Allow-Methods', 'POST, GET, OPTIONS');
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  if(req.method == 'OPTIONS'){
+    return res.sendStatus(200);
+  }
+  next();
 });
 
 dotenv.config();
