@@ -14,12 +14,16 @@ const routes = express.Router();
 
 const upload = multer(uploadConfig);
 
+
+routes.get('/categories', auth.verifyJWT, (req, res, next) => {CategoryController.index(req, res, next)});
+
+
 routes.post('/users/login', (req, res, next) => {UserController.login(req, res, next)});
 routes.post('/users/store', auth.verifyJWT, (req, res, next) => {UserController.store(req, res, next)});
-// routes.post('/categories', auth.verifyJWT, (req, res, next) => {CategoryController.store(req, res, next)});
-// routes.post('/items', upload.single('image'), ItemController.store);
-// routes.post('/tables', TableController.store);
-// routes.get('/tables', TableController.index);
-// routes.post('/tables/:table_id/orders', OrderController.store);
+routes.post('/categories', auth.verifyJWT, (req, res, next) => {CategoryController.store(req, res, next)});
+routes.post('/items', upload.single('image'), ItemController.store);
+routes.post('/tables', TableController.store);
+routes.get('/tables', TableController.index);
+routes.post('/tables/:table_id/orders', OrderController.store);
 
 module.exports = routes; 

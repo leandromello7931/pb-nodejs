@@ -6,17 +6,19 @@ module.exports = {
 
   async login(req, res, next){
     const { login, password} = req.body;
+    console.log(`${login} - ${password} `);
     const user = await User.findOne({where: {login : login}})
+    if (!user){
+      return res.status(401).send({error: 'User not authorized'});
+    }
     const authorized = await bcrypt.compare(password, user.password);
     const _id = user.id;
-    console.log('sem or');
     if(authorized){ //password match 
       const token = jwt.sign({_id}, process.env.SECRET, { //generate token with user.id
-        expiresIn: 500
+        expiresIn: "2 days"
       });
       return res.json({auth: true, token: token});
-    }
-    next();    
+    }  
     return res.status(401).send({error: 'User not authorized'});
 
   },
