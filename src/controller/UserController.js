@@ -20,7 +20,7 @@ module.exports = {
       return res.json({auth: true, token: token});
     }  
     return res.status(401).send({error: 'User not authorized'});
-
+    
   },
 
   async store(req, res, next){
