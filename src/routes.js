@@ -20,7 +20,7 @@ routes.get('/categories', auth.verifyJWT, (req, res, next) => {CategoryControlle
 
 routes.post('/users/login', (req, res, next) => {UserController.login(req, res, next)});
 routes.post('/users/store', auth.verifyJWT, (req, res, next) => {UserController.store(req, res, next)});
-routes.post('/categories', auth.verifyJWT, (req, res, next) => {CategoryController.store(req, res, next)});
+routes.post('/categories', upload.single('image'), auth.verifyJWT, (req, res, next) => {CategoryController.store(req, res, next)});
 routes.post('/items', upload.single('image'), ItemController.store);
 routes.post('/tables', TableController.store);
 routes.get('/tables', TableController.index);

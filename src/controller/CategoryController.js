@@ -9,9 +9,7 @@ module.exports = {
       }else{
         return res.json(categories);
       }
-      return res.json(categories);
     } catch (error) {
-      console.log(error);
       return res.json({message: "Ops"});
     }
 
@@ -24,16 +22,16 @@ module.exports = {
     } = req.body; 
     
     try{
-      const category = await Category.create({ name, active });
-      // if(!category){
-      //   return res.status(409).send({error: "An error has ocurred, please check the message and try again"});
-      // }
-      next();
+      const imageUpload = req.file.path;
+      const category = await Category.create({ name, active, image: imageUpload });
+      if(!category){
+        return res.status(409).send({error: "An error has ocurred, please check the message and try again"});
+      }
       //return res.json(category);
-      return res.status(200).send({error: "OK"});
+      return res.status(200).send({category});
 
     }catch(err){
-      next(err);
+      console.log(err);
       return res.status(500).send({error: "Internal server error"});
     }
 

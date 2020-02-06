@@ -5,7 +5,7 @@ class Category extends Model{
     super.init({
       name: DataTypes.STRING,
       active: DataTypes.BOOLEAN,
-
+      image: DataTypes.BLOB
     },{
       sequelize,
       tableName: 'categories'
@@ -13,7 +13,7 @@ class Category extends Model{
   }
 
   static associate(models){
-    this.belongsToMany(models.Items,)
+    this.belongsToMany(models.Items)
   }
 }
 
