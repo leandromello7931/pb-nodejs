@@ -1,8 +1,8 @@
 const express = require('express');
 const routes = require('./routes');
-
+const path = require('path');
 const cors = require('cors');
-const autoReap = require('multer-autoreap');
+// const autoReap = require('multer-autoreap');
 const dotenv = require('dotenv-safe');
 const PORT = process.env.PORT || 3333;
 require('./database');
@@ -26,7 +26,7 @@ app.use(( req, res, next ) => {
 
 dotenv.config();
 
-app.use(autoReap);
-
+// app.use(autoReap);
+app.use('/files', express.static(path.resolve(__dirname, '..', 'uploads')));
 app.use(routes);
 app.listen(PORT);

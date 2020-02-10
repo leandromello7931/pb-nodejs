@@ -22,8 +22,8 @@ module.exports = {
     } = req.body; 
     
     try{
-      const imageUpload = req.file.path;
-      const category = await Category.create({ name, active, image: imageUpload });
+      const { filename } = req.file;
+      const category = await Category.create({ name, active, image: filename });
       if(!category){
         return res.status(409).send({error: "An error has ocurred, please check the message and try again"});
       }

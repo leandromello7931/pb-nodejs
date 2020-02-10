@@ -11,7 +11,7 @@ module.exports = {
     //request, file, callback
     filename: (req, file, cb) => { //arrow functions
       const ext = path.extname(file.originalname);
-      const name = path.basename(file.originalname).replace(/\s+/g, '');
+      const name = path.basename(file.originalname, ext).replace(/\s+/g, '');
 
       //`` forma o nome a partir de várias variáveis
       cb(null, `${name}-${Date.now()}${ext}`);

@@ -5,7 +5,7 @@ class Category extends Model{
     super.init({
       name: DataTypes.STRING,
       active: DataTypes.BOOLEAN,
-      image: DataTypes.BLOB
+      image: DataTypes.STRING
     },{
       sequelize,
       tableName: 'categories'
