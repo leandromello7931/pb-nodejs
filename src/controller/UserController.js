@@ -6,7 +6,6 @@ module.exports = {
 
   async login(req, res, next){
     const { login, password} = req.body;
-    console.log(`${login} - ${password} `);
     const user = await User.findOne({where: {login : login}})
     if (!user){
       return res.status(401).send({error: 'User not authorized'});
@@ -29,8 +28,6 @@ module.exports = {
       login,
       password,
     } = req.body;
-
-    console.log(req);
     
     const saltRounds = 10;
 

@@ -9,7 +9,6 @@ module.exports = {
       }
       return res.status(200).send(tables);
     }catch(err){
-      console.log(err);
       return res.status(500).send({ err});
     }
   },

@@ -16,7 +16,7 @@ const upload = multer(uploadConfig);
 
 
 routes.get('/categories', auth.verifyJWT, (req, res, next) => {CategoryController.index(req, res, next)});
-
+routes.delete('/categories/:id', auth.verifyJWT, (req, res, next) => {CategoryController.delete(req, res, next)})
 
 routes.post('/users/login', (req, res, next) => {UserController.login(req, res, next)});
 routes.post('/users/store', auth.verifyJWT, (req, res, next) => {UserController.store(req, res, next)});

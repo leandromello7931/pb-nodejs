@@ -31,9 +31,23 @@ module.exports = {
       return res.status(200).send({category});
 
     }catch(err){
-      console.log(err);
       return res.status(500).send({error: "Internal server error"});
     }
+  },
 
+  async delete(req, res, next){
+    const { id } = req.params;
+    const rowsDeleted = await Category.destroy({
+      where: {
+        id: id
+      }
+    });
+    if(rowsDeleted !== 0){
+      return res.status(200).send({message: "Recorde deleted"});
+    }else{
+      return res.status(400).send({error: "Something bad happened"});
+    }
+
+    
   }
 }
