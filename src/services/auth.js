@@ -1,8 +1,10 @@
 const jwt = require('jsonwebtoken');
 
 const verifyJWT = (req, res, next) => {
-  const token = req.headers['authorization'].split(" ")[1];
+  try{
+    const token = req.headers['authorization'].split(" ")[1];
   
+
   if(!token){
     return res.status(401).send({auth: false, message: 'User not authenticated'});
   }
@@ -14,6 +16,9 @@ const verifyJWT = (req, res, next) => {
     req.userId = decoded.id;
     next();
   })
+  }catch(err){
+    return res(500).send( 'Algo de errado aconteceu, tente novamente');
+  }
 }
 
 module.exports.verifyJWT = verifyJWT;

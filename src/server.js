@@ -5,7 +5,6 @@ const cors = require('cors');
 // const autoReap = require('multer-autoreap');
 const dotenv = require('dotenv-safe');
 const PORT = process.env.PORT || 3333;
-require('./database');
 
 const app = express();
 dotenv.config();
